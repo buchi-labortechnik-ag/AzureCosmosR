@@ -52,7 +52,7 @@
 #' }
 #' @rdname cosmos_endpoint
 #' @export
-cosmos_endpoint <- function(host, key, key_type=c("master", "resource"),
+cosmos_endpoint <- function(host, key, key_type=c("master", "resource", "aadToken"),
                             api_version=getOption("azure_cosmosdb_api_version"))
 {
     obj <- list(
