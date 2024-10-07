@@ -5,7 +5,7 @@ sign_sha256 <- function(string, key)
 
 sign_cosmos_request <- function(key, verb, resource_type, resource_link, date)
 {
-    if(key$type == "resource")
+    if(key$type == "resource" || key$type == "aadToken")
         return(curl::curl_escape(key$value))
 
     if(inherits(date, "POSIXt"))
