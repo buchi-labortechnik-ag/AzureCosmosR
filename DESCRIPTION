@@ -1,4 +1,4 @@
-Package: AzureCosmosR
+Package: BAzureCosmosR
 Title: Interface to the 'Azure Cosmos DB' 'NoSQL' Database Service
 Version: 1.0.0
 Authors@R: c(
