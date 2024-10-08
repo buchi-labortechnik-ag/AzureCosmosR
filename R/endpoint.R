@@ -69,6 +69,8 @@ print.cosmos_endpoint <- function(x, ...)
 {
     cat("Cosmos DB SQL endpoint\n")
     cat("Host:", httr::build_url(x$host), "\n")
+    cat("Key type:", key_type, "\n")
+    cat("Api version:", api_version)
     invisible(x)
 }
 
