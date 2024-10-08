@@ -131,6 +131,13 @@ do_request <- function(url, key, resource_type, resource_link, headers=list(), b
             resource_link,
             now
         )
+
+        # Debugging information
+        cat("HTTP Verb:", http_verb, "\n")
+        cat("URL:", httr::build_url(url), "\n")
+        cat("x-ms-date:", headers$`x-ms-date`, "\n")
+        cat("Authorization:", headers$Authorization, "\n")
+      
         response <- tryCatch(httr::VERB(http_verb, url, do.call(httr::add_headers, headers),
                                         body=body, encode=encode, ...),
                              error=function(e) e)
