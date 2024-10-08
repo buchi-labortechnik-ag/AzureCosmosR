@@ -1,8 +1,8 @@
 #' Client endpoint for Azure Cosmos DB core API
 #'
 #' @param host For `cosmos_endpoint`, the host URL for the endpoint. Typically of the form `https://{account-name}.documents.azure.com:443/` (note the port number).
-#' @param key For `cosmos_endpoint`, a string containing the password for the endpoint. This can be either a master key or a resource token.
-#' @param key_type For `cosmos_endpoint`, the type of the key, either "master" or "resource".
+#' @param key For `cosmos_endpoint`, a string containing the password for the endpoint. This can be either a master key, a resource token, or an AAD token.
+#' @param key_type For `cosmos_endpoint`, the type of the key, either "master" or "resource" or "aad".
 #' @param api_version For `cosmos_endpoint`, the API version to use.
 #' @param endpoint For `call_cosmos_endpoint`, a Cosmos DB endpoint object, as returned by `cosmos_endpoint`.
 #' @param path For `call_cosmos_endpoint`, the path in the URL for the endpoint call.
@@ -131,13 +131,7 @@ do_request <- function(url, key, resource_type, resource_link, headers=list(), b
             resource_link,
             now
         )
-
-        # Debugging information
-        cat("HTTP Verb:", http_verb, "\n")
-        cat("URL:", httr::build_url(url), "\n")
-        cat("x-ms-date:", headers$`x-ms-date`, "\n")
-        cat("Authorization:", headers$Authorization, "\n")
-      
+     
         response <- tryCatch(httr::VERB(http_verb, url, do.call(httr::add_headers, headers),
                                         body=body, encode=encode, ...),
                              error=function(e) e)
